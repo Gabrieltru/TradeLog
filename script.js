@@ -16,11 +16,46 @@ function renderCalendar() {
     monthDisplay.innerText = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' })
         .format(new Date(currentYear, currentMonth));
 
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    days.forEach(d => {
+        const label = document.createElement('div');
+        label.style.cssText = 'text-align:center; font-size:0.75rem; color:#64748b; padding:5px 0;';
+        label.innerText = d;
+        calendar.appendChild(label);
+    });
+
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
     for (let i = 0; i < firstDay; i++) {
         calendar.appendChild(document.createElement('div'));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dateKey = `${currentYear}-${currentMonth + 1}-${day}`;
+        const trades = tradeData[dateKey] || [];
+        const totalPnl = trades.reduce((sum, t) => sum + t.pnl, 0);
+        const tradeCount = trades.length;
+
+        const daySquare = document.createElement('div');
+        daySquare.className = 'day';
+
+        if (tradeCount > 0) {
+            daySquare.classList.add(totalPnl >= 0 ? 'profit' : 'loss');
+            daySquare.innerHTML = `
+                <span class="day-number">${day}</span>
+                <span class="day-pnl">$${totalPnl.toFixed(2)}</span>
+                <span class="day-trade-count">${tradeCount} trade${tradeCount !== 1 ? 's' : ''}</span>
+            `;
+        } else {
+            daySquare.innerHTML = `<span class="day-number">${day}</span>`;
+        }
+
+        daySquare.onclick = () => openModal(dateKey);
+        calendar.appendChild(daySquare);
+    }
+    updateStats();
+}
     }
 
     for (let day = 1; day <= daysInMonth; day++) {

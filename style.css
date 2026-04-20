@@ -54,4 +54,74 @@ body {
 input, textarea {
     width: 100%; margin: 10px 0; padding: 10px;
     background: #334155; border: none; color: white; border-radius: 5px;
+    box-sizing: border-box;
 }
+.day-trade-count {
+    display: block;
+    font-size: 0.72rem;
+    opacity: 0.85;
+    margin-top: 4px;
+}
+.add-trade-section h4 {
+    margin: 12px 0 4px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+#add-trade-btn {
+    width: 100%;
+    padding: 10px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 4px;
+}
+#add-trade-btn:hover { background: #2563eb; }
+#trades-list { margin-bottom: 12px; }
+.trade-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    gap: 10px;
+}
+.trade-item-info { flex: 1; }
+.trade-item-pnl {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.trade-item-pnl.pos { color: var(--green); }
+.trade-item-pnl.neg { color: var(--red); }
+.trade-item-notes {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-top: 3px;
+}
+.delete-trade-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+.delete-trade-btn:hover { color: #fca5a5; }
+.modal-actions { margin-top: 14px; }
+#close-btn {
+    width: 100%;
+    padding: 10px;
+    background: #475569;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#close-btn:hover { background: #64748b; }

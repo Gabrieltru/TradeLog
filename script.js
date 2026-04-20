@@ -127,7 +127,7 @@ function updateStats() {
 }
 
 document.getElementById('close-btn').onclick = () => modal.style.display = 'none';
-document.getElementById('prevMonth').onclick = () => { currentMonth--; if (currentMonth < 0) { currentMonth = 11; currentYear--; } renderCalendar(); };
-document.getElementById('nextMonth').onclick = () => { currentMonth++; if (currentMonth > 11) { currentMonth = 0; currentYear++; } renderCalendar(); };
+document.getElementById('prevMonth').onclick = () => { if (currentMonth === 0) { currentMonth = 11; currentYear--; } else { currentMonth--; } renderCalendar(); };
+document.getElementById('nextMonth').onclick = () => { if (currentMonth === 11) { currentMonth = 0; currentYear++; } else { currentMonth++; } renderCalendar(); };
 
 renderCalendar();

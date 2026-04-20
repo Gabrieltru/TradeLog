@@ -31,11 +31,20 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <h3 id="modal-date-title">Date</h3>
-            <input type="number" id="pnl-input" placeholder="Amount (e.g. 500 or -200)">
-            <textarea id="notes-input" placeholder="Trade notes..."></textarea>
+
+            <!-- Existing trades list -->
+            <div id="trades-list"></div>
+
+            <!-- Add new trade -->
+            <div class="add-trade-section">
+                <h4>Add Trade</h4>
+                <input type="number" id="pnl-input" placeholder="PnL (e.g. 500 or -200)">
+                <textarea id="notes-input" placeholder="Trade notes..."></textarea>
+                <button id="add-trade-btn">+ Add Trade</button>
+            </div>
+
             <div class="modal-actions">
-                <button id="save-btn">Save Entry</button>
-                <button id="close-btn">Cancel</button>
+                <button id="close-btn">Close</button>
             </div>
         </div>
     </div>

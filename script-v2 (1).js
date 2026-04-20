@@ -41,7 +41,18 @@ function openModal(dateKey) {
   document.getElementById('pnl-input').value = '';
   document.getElementById('notes-input').value = '';
   renderTradesList();
+  updateAddTradeLabel();
   modal.style.display = 'flex';
+}
+
+function updateAddTradeLabel() {
+  const trades = tradeData[selectedDateKey] || [];
+  const label = document.getElementById('add-trade-label');
+  if (trades.length === 0) {
+    label.innerText = 'Add New Trade';
+  } else {
+    label.innerText = `Add Another Trade (${trades.length} ${trades.length === 1 ? 'trade' : 'trades'} already added)`;
+  }
 }
 
 function renderTradesList() {
@@ -57,7 +68,7 @@ function renderTradesList() {
     const pnlClass = t.pnl >= 0 ? 'pos' : 'neg';
     const pnlSign = t.pnl >= 0 ? '+' : '';
     const notesHtml = t.notes ? `<div class="trade-item-notes">${t.notes}</div>` : '';
-    html += `<div class="trade-item"><div class="trade-item-info"><div class="trade-item-pnl ${pnlClass}">${pnlSign}${t.pnl.toFixed(2)}</div>${notesHtml}</div><button class="delete-trade-btn" onclick="window.deleteTrade(${i})">X</button></div>`;
+    html += `<div class="trade-item"><div class="trade-item-info"><div class="trade-item-pnl ${pnlClass}">${pnlSign}${t.pnl.toFixed(2)}</div>${notesHtml}</div><button class="delete-trade-btn" onclick="window.deleteTrade(${i})">Delete</button></div>`;
   }
   list.innerHTML = html;
 }
@@ -67,6 +78,7 @@ window.deleteTrade = function(index) {
   if (tradeData[selectedDateKey].length === 0) delete tradeData[selectedDateKey];
   saveData();
   renderTradesList();
+  updateAddTradeLabel();
   renderCalendar();
 };
 
@@ -80,6 +92,7 @@ document.getElementById('save-btn').onclick = function() {
   document.getElementById('pnl-input').value = '';
   document.getElementById('notes-input').value = '';
   renderTradesList();
+  updateAddTradeLabel();
   renderCalendar();
 };
 

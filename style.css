@@ -125,3 +125,23 @@ input, textarea {
     cursor: pointer;
 }
 #close-btn:hover { background: #64748b; }
+.calendar-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.calendar-controls button {
+    background: var(--card);
+    color: var(--text);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.calendar-controls button:hover {
+    background: #334155;
+}
